@@ -1,1 +1,1 @@
-web: gunicorn app:task
+web: gunicorn __init__:task
