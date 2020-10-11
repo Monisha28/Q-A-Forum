@@ -15,7 +15,7 @@ _Clone the repository_
 _Create a virtualenv and activate it_
 - $ python3 -m venv venv
 - $ . venv/bin/activate
-- pip3 install -r requirements.txt
+- $ pip3 install -r requirements.txt
 
 _Run the app_
 - $ export FLASK_APP=task
