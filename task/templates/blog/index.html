@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Posts{% endblock %}</h1>
+  <form method="post" style="display: inline-block; width: 300px; margin: 0 auto; color: slategray; font-style: italic; font-size: 14px;">
+    Search: <input type="text" placeholder="Search by title or tag.." name="search" value="">
+  </form>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('blog.create') }}">New Question</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% for post in posts %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ post['title'] }}</h1>
+          <div class="about">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+        </div>
+        {% if g.user['id'] == post['author_id'] %}
+          <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
+        {% endif %}
+        <a class="action" href="{{ url_for('blog.answer',  id=post['id']) }}">Add Answer</a>
+      </header>
+      <p class="body">{{ post['body'] }}</p>
+      <div class="about">
+        <label for="ans">Answers</label>
+      </div>
+    </article>
+    {% for a in ans %}
+      <article class="post">
+        <header>
+          <div>
+            {% if a['post_id'] == post['id'] %}
+              <p class="body">{{ a['comment'] }}</p>
+              <hr style="color : #d3d3d3;"> 
+            {% endif %}
+          </div>
+          {% if g.user['id'] == a['author_c'] and a['post_id'] == post['id'] %}
+            <a class="action" href="{{ url_for('blog.update_ans', id=a['id']) }}">Edit</a>
+          {% endif %}      
+       </header>      
+      </article>
+    {% endfor %}
+    {% if not loop.last %}
+      <hr style="color : #d3d3d3; border-top: 3px solid;">
+    {% endif %}
+  {% endfor %}
+{% endblock %}

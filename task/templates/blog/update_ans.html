@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit Answer {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <textarea placeholder="Your Answer..." name="ans" id="ans">{{ request.form['ans'] or answer['comment'] }}</textarea>
+    <input type="submit" value="Post Answer">
+  </form>
+  <hr>
+  <form action="{{ url_for('blog.delete_ans', id=answer['id']) }}" method="post">
+    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+  </form>
+{% endblock %}
