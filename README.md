@@ -9,7 +9,7 @@ __Requirements__
 - click
 
 __Clone the repository__
-- $ git clone https://github.com/Monisha28/Q-A-Forum/master
+- $ git clone https://github.com/Monisha28/Q-A-Forum/tree/master
 - $ cd flask
 
 __Create a virtualenv and activate it__
