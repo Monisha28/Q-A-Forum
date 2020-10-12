@@ -4,12 +4,10 @@ from flask import Flask
 
 
 def create_app():
-
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_object(config)
     app.config.from_mapping(
         # a default secret that should be overridden by instance config
-        # SECRET_KEY="dev",
+        SECRET_KEY="dev",
         # store the database in the instance folder
         DATABASE=os.path.join(app.instance_path, "task.sqlite"),
     )
@@ -50,3 +48,6 @@ def create_app():
 
     return app
 
+if __name__=='__main__':
+    app = create_app()
+    app.run(host='0.0.0.0', port=8080, debug=True)

@@ -1,1 +1,1 @@
-web: gunicorn task:app
+web: gunicorn -b 0.0.0.0:$PORT task:create_app\(\)
