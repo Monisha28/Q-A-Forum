@@ -74,6 +74,7 @@ def get_post(id, check_author=True):
 
     return post
 
+
 def get_ans(id):
     
     ans = (
