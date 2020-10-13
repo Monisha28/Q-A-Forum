@@ -27,15 +27,15 @@ def index():
         posts = db.execute(
                 "SELECT p.id, title, body, tag, created, author_id, username"
                 " FROM post p JOIN user u ON p.author_id = u.id"
-                " WHERE p.title = ?",
-                (search,),
+                " WHERE p.title LIKE ?",
+                ('%'+search+'%',),
             ).fetchall()
         if not posts:
             posts = db.execute(
                 "SELECT p.id, title, body, tag, created, author_id, username"
                 " FROM post p JOIN user u ON p.author_id = u.id"
-                " WHERE p.tag = ?",
-                (search,),
+                " WHERE p.tag LIKE ?",
+                ('%'+search+'%',),
             ).fetchall()
     else:
         posts = db.execute(
